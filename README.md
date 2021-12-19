@@ -2,12 +2,14 @@
 _(just for fun)_
 The sake of creating {} is for me to hone my skills as a new programmer. This is my first ever personal project and I wanted to make it as a way showcase what I've learned as a first year Comp Sci major.
 
-To whoever is reading this, thank you for stopping by :)
+So far this README is incomplete as I'm trying to flesh out the concept and program a bit more. I wanted a shot at README driven development.
+
+To whoever is reading this, thank you for stopping by! :)
 
 ---
 
 # What is {_insert tbd dating app name_}?
-  {} is a personal project of mine. Using concepts from popular dating apps, {} is pretty much the same thing.  
+  Written entirely in Python, {} is a personal project of mine. Using concepts from popular dating apps, {} is pretty much the same thing.  
   Except, instead of connecting with real people, you connect with 1's and 0's.
   
 # Wait, what?
