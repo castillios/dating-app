@@ -2,7 +2,7 @@
 _(just for fun)_
 The sake of creating {} is for me to hone my skills as a new programmer. This is my first ever personal project and I wanted to make it as a way showcase what I've learned as a first year Comp Sci major.
 
-So far this README is incomplete as I'm trying to flesh out the concept and program a bit more. I wanted a shot at README driven development.
+_(So far this README is incomplete as I'm trying to flesh out the concept a bit more. I wanted a shot at README driven development.)_
 
 To whoever is reading this, thank you for stopping by! :)
 
