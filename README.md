@@ -1,5 +1,8 @@
 # dating-app
 _(just for fun)_
+The sake of creating {} is for me to hone my skills as a new programmer. This is my first ever personal project and I wanted to make it as a way showcase what I've learned as a first year Comp Sci major.
+
+To whoever is reading this, thank you for stopping by :)
 
 ---
 
