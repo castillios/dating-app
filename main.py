@@ -19,6 +19,8 @@ PRESETS = [
     Profile('Maribel', 20, 'Barista', 'Looking for adventure!')
 ]
 
+MATCHES = []
+
 user_profile = None
 
 def create_profile() -> Profile:
