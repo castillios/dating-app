@@ -2,9 +2,10 @@ from collections import namedtuple
 import csv
 
 Profile = namedtuple("Profile", ['name', 'age', 'occupation', 'tagline'])
+# future: implement bio as a dictionary {'likes':[], 'dislikes':[]...}
+
 # keeps track of index when browsing thru profiles; by default is 0
 DEFAULT_IN = 0
-# future: implement bio as a dictionary {'likes':[], 'dislikes':[]...}
 
 """
 PRESETS
@@ -91,9 +92,9 @@ def switch_prof(prof_library:list, idx):
 
     return idx
 
-def swipe(user_in, idx):
-    idx = switch_prof(PRESETS, cur_in)
-    return idx
+def swipe(idx):
+    swipe_idx = switch_prof(PRESETS, idx)
+    return swipe_idx
 
 
 def main_menu():
@@ -110,30 +111,29 @@ def user_input(msg:str=''):
     return user_in
 
 if __name__ == "__main__":
-    display_profile(PRESETS[DEFAULT_IN])
-    user_in = input('DEBUG: type n to swipe (\'q\' to exit)')
-    cur_in = DEFAULT_IN
-
+    option = None
     while True:
-        user_in = user_in.lower()
-        if user_in == 'quit':
-            print('quitting application...')
-            break
-        cur_in = swipe(PRESETS, cur_in)
-
-        user_in = input('DEBUG: type n to swipe (quit to exit)')
-
-    print(main_menu())
-    while True:
-        option = user_input('Test: ')
         if option == 'q':
-            print()
-            print()
-            print('Quitting...')
+            for i in range(10):
+                print()
+            print('Quitting application')
             break
+
+        print(main_menu())
+        option = user_input('Test: ')
 
         if option == 'b':
-            print('not implemented')
+            display_profile(PRESETS[DEFAULT_IN])
+            cur_in = DEFAULT_IN
+
+            while True:
+                user_in = user_input('DEBUG: type n to swipe (q to exit)\n')
+                if user_in == 'q':
+                    option = q
+                    break
+                
+                cur_in = swipe(cur_in)
+
         elif option == 'm':
             print('not implemented')
         elif option == 'p':
