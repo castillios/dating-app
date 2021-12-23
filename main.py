@@ -28,7 +28,7 @@ MATCHES = []
 USER_PROF = []
 
 
-def create_profile() -> Profile:
+def create_profile() -> bool:
     user_name = input('Enter your name:\n')
 
     while True:
@@ -46,13 +46,27 @@ def create_profile() -> Profile:
 
     USER_PROF.append(user_profile)
 
-    return 'Profile created'
+    return True
 
 
 def del_prof():
     USER_PROF.pop(0)
 
 
+def no_profile():
+    user = False
+    if len(USER_PROF) == 0:
+        while True:
+            create_true = user_input('No existing profile. Create new profile? (y/n)\n')
+            if create_true == 'y':
+                user = create_profile()
+                break
+            elif create_true == 'n':
+                break
+            else:
+                print("Invalid input! Type 'y' or 'n'.")   
+    return user 
+        
 # 'graphical' user interface
 def display_profile(prof:Profile):
     x = 'PROFILE'
@@ -80,6 +94,11 @@ def ascii_face():
 
     face = f"{hair:^20}\n{eyes:^20}\n{nose:^20}\n{mouth:^20}"
     return face
+
+
+def spacer():
+    for i in range(10):
+        print()
 
 
 def switch_prof(prof_library:list, idx):
@@ -115,8 +134,7 @@ if __name__ == "__main__":
     option = None
     while True:
         if option == 'q':
-            for i in range(10):
-                print()
+            spacer()
             print('Quitting application')
             break
 
@@ -124,37 +142,50 @@ if __name__ == "__main__":
         option = user_input('Test: ')
 
         if option == 'b':
-            display_profile(PRESETS[DEFAULT_IN])
-            cur_in = DEFAULT_IN
+            check = no_profile()
+            if check:
+                display_profile(PRESETS[DEFAULT_IN])
+                cur_in = DEFAULT_IN
 
-            while True:
-                user_in = user_input('DEBUG: type n to swipe (q to exit)\n')
-                if user_in == 'q':
-                    option = q
-                    break
-                
-                cur_in = swipe(cur_in)
+                while True:
+                    user_in = user_input('DEBUG: type n to swipe (q to exit)\n')
+                    if user_in == 'q':
+                        option = q
+                        break
+                    
+                    cur_in = swipe(cur_in)
+            else:
+                spacer()
+                print("No existing profile. Returning to menu...")
 
         elif option == 'm':
             print('not implemented')
+
         elif option == 'p':
-            if len(USER_PROF) == 0:
-                while True:
-                    create_true = user_input('No existing profile. Create new profile? (y/n)\n')
-                    if create_true == 'y':
-                        user = create_profile()
-                        break
-                    elif create_true == 'n':
-                        break
-                    else:
-                        print("Invalid input! Type 'y' or 'n'.")
-            else:
+            check = no_profile()
+            if check:
                 display_profile(USER_PROF[0])
+            else:
+                spacer()
+                print("No existing profile. Returning to menu...")
+
         elif option == 'c':
             if len(USER_PROF) >= 1:
                 print("A user profile already exists. Create a new one? (y/n)")
                 print("WARNING: This will delete the existing profile!")
-                test = user_input()
+                while True:
+                    new = user_input()
+                    if new == 'y':
+                        del_prof()
+                        create_profile()
+                        print('DEBUG:', USER_PROF)
+                        break
+                    elif new == 'n':
+                        spacer()
+                        print('Returning to menu...')
+                        break
+                    else:
+                        print("Invalid input! Type 'y' or 'n'.")
             else:
-                new_user = create_profile()
+                create_profile()
     
