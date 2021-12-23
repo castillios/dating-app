@@ -2,6 +2,8 @@ from collections import namedtuple
 import csv
 
 Profile = namedtuple("Profile", ['name', 'age', 'occupation', 'tagline'])
+# keeps track of index when browsing thru profiles; by default is 0
+DEFAULT_IN = 0
 # future: implement bio as a dictionary {'likes':[], 'dislikes':[]...}
 
 """
@@ -67,7 +69,7 @@ def display_profile(prof:Profile):
     print()
     
 
-# temporarily hardcoded
+# temporarily hardcoded//make a dictionary for facial features
 def ascii_face():
     hair = "/\\/\\/\\"
     eyes = 'o    u'
@@ -76,6 +78,22 @@ def ascii_face():
 
     face = f"{hair:^20}\n{eyes:^20}\n{nose:^20}\n{mouth:^20}"
     return face
+
+
+def switch_prof(prof_library:list, idx):
+    """Iterates through a list of profiles given user input."""
+    if idx == (len(prof_library) - 1):
+        idx = DEFAULT_IN
+    else:
+        idx += 1
+    
+    display_profile(prof_library[idx])
+
+    return idx
+
+def swipe(user_in, idx):
+    idx = switch_prof(PRESETS, cur_in)
+    return idx
 
 
 def main_menu():
@@ -92,8 +110,19 @@ def user_input(msg:str=''):
     return user_in
 
 if __name__ == "__main__":
-    # me = create_profile()
-    # print(me)
+    display_profile(PRESETS[DEFAULT_IN])
+    user_in = input('DEBUG: type n to swipe (\'q\' to exit)')
+    cur_in = DEFAULT_IN
+
+    while True:
+        user_in = user_in.lower()
+        if user_in == 'quit':
+            print('quitting application...')
+            break
+        cur_in = swipe(PRESETS, cur_in)
+
+        user_in = input('DEBUG: type n to swipe (quit to exit)')
+
     print(main_menu())
     while True:
         option = user_input('Test: ')
@@ -127,5 +156,4 @@ if __name__ == "__main__":
                 test = user_input()
             else:
                 new_user = create_profile()
-
     
