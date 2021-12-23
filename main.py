@@ -1,6 +1,7 @@
 from collections import namedtuple
 import csv
 
+
 Profile = namedtuple("Profile", ['name', 'age', 'occupation', 'tagline'])
 # future: implement bio as a dictionary {'likes':[], 'dislikes':[]...}
 
