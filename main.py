@@ -199,7 +199,7 @@ if __name__ == "__main__":
                 while True:
                     user_in = user_input('DEBUG: type n to swipe (q to exit)\n')
                     if user_in == 'q':
-                        option = q
+                        option = 'q'
                         break
                     
                     cur_in = swipe(cur_in)
