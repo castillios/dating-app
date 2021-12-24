@@ -53,6 +53,49 @@ def del_prof():
     USER_PROF.pop(0)
 
 
+def edit_prof(prof:Profile):
+    menu = f"\n{'@' * 20}\n{'EDIT MENU':^20}\n{'Edit name (n)':^20}\n{'Edit age (a)':^20}\n{'Edit occupation (o)'}\n{'Edit tagline (t)':^20}"
+    # temp_profile
+    # implement edit photo option later on** 
+    while True:
+
+        print(menu)
+        print('@' * 20)
+        print()
+
+        user_in = user_input('Select an option. Type \'q\' to quit: ')
+        
+        print()
+        print('@' * 20)
+        print()
+        
+        if user_in == 'q':
+            break
+        elif user_in == 'n':
+            print(f"{'EDIT NAME':^20}")
+            print()
+            new_name = user_input('Enter new name: ')
+            print('@' * 20)
+            prof = prof._replace(name=new_name)
+        elif user_in == 'a':
+            print(f"{'EDIT AGE':^20}")
+            new_age = int(user_input('Enter new age: '))
+            prof = prof._replace(age=new_age)
+        elif user_in == 'o':
+            print(f"{'EDIT OCCUPATION':^20}")
+            new_occ = user_input('Enter new occupation: ')
+            prof = prof._replace(occupation=new_occ)
+        elif user_in == 't':
+            print(f"{'EDIT TAGLINE':^20}")
+            new_tag = user_input('Enter new tagline: ')
+            prof = prof._replace(tagline=new_tag)
+        else:
+            print('Invalid option! Try again.')
+
+    return prof
+
+
+
 def no_profile():
     user = False
     if len(USER_PROF) == 0:
@@ -64,7 +107,9 @@ def no_profile():
             elif create_true == 'n':
                 break
             else:
-                print("Invalid input! Type 'y' or 'n'.")   
+                print("Invalid input! Type 'y' or 'n'.")
+    elif len(USER_PROF) == 1:
+        user = True
     return user 
         
 # 'graphical' user interface
@@ -125,6 +170,10 @@ def main_menu():
     return menu
 
 
+def prof_menu():
+    print(f"options:\n{'edit profile (e)':^20}\n{'return to menu (q)':^20}")
+
+
 def user_input(msg:str=''):
     user_in = input(msg)
     user_in = user_in.lower()
@@ -164,11 +213,21 @@ if __name__ == "__main__":
         elif option == 'p':
             check = no_profile()
             if check:
-                display_profile(USER_PROF[0])
-            else:
+                while True:
+                    display_profile(USER_PROF[0])
+                    prof_menu()
+                    user_in = user_input('Pick a menu option: ')
+                    if user_in == 'q':
+                        break
+                    elif user_in == 'e':
+                        edited = edit_prof(USER_PROF[0])
+                        USER_PROF[0] = edited
+                    else:
+                        print('Invalid Input! Try again.\n')
                 spacer()
+            else:
                 print("No existing profile. Returning to menu...")
-
+                
         elif option == 'c':
             if len(USER_PROF) >= 1:
                 print("A user profile already exists. Create a new one? (y/n)")
@@ -188,4 +247,3 @@ if __name__ == "__main__":
                         print("Invalid input! Type 'y' or 'n'.")
             else:
                 create_profile()
-    
