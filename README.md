@@ -15,7 +15,7 @@ To whoever is reading this, thank you for stopping by! :)
 # Wait, what?
   Yep, this is no ordinary dating app. Think of PenPal as an advanced chat bot with:  
   - Fun ASCII profile pictures ;-P
-  - Randomly generated bios made love (or not!)
+  - Randomly generated bios made with love (or not!)
   - Conversation point system
   - And more!  
 
