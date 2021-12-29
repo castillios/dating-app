@@ -29,18 +29,18 @@ USER_PROF = []
 
 
 def create_profile() -> bool:
-    user_name = input('Enter your name:\n')
+    user_name = input('Enter your name: ')
 
     while True:
         try:
-            user_age = int(input('Enter your age (18+):\n'))
+            user_age = int(input('Enter your age (18+): '))
             if user_age >= 18:
                 break
         except:
             print('\nError! Enter an integer.\n')
 
-    user_occupation = input('Enter your occupation:\n')
-    user_tagline = input('Write a sentence that makes you, you! Enter a tagline:\n')
+    user_occupation = input('Enter your occupation: ')
+    user_tagline = input('Write a sentence that makes you, you! Enter a tagline: ')
 
     user_profile = Profile(user_name, user_age, user_occupation, user_tagline)
 
@@ -74,20 +74,20 @@ def edit_prof(prof:Profile):
         elif user_in == 'n':
             print(f"{'EDIT NAME':^20}")
             print()
-            new_name = user_input('Enter new name: ')
+            new_name = input('Enter new name: ')
             print('@' * 20)
             prof = prof._replace(name=new_name)
         elif user_in == 'a':
             print(f"{'EDIT AGE':^20}")
-            new_age = int(user_input('Enter new age: '))
+            new_age = int(input('Enter new age: '))
             prof = prof._replace(age=new_age)
         elif user_in == 'o':
             print(f"{'EDIT OCCUPATION':^20}")
-            new_occ = user_input('Enter new occupation: ')
+            new_occ = input('Enter new occupation: ')
             prof = prof._replace(occupation=new_occ)
         elif user_in == 't':
             print(f"{'EDIT TAGLINE':^20}")
-            new_tag = user_input('Enter new tagline: ')
+            new_tag = input('Enter new tagline: ')
             prof = prof._replace(tagline=new_tag)
         else:
             print('Invalid option! Try again.')
@@ -100,7 +100,7 @@ def no_profile():
     user = False
     if len(USER_PROF) == 0:
         while True:
-            create_true = user_input('No existing profile. Create new profile? (y/n)\n')
+            create_true = input('No existing profile. Create new profile? (y/n): ')
             if create_true == 'y':
                 user = create_profile()
                 break
