@@ -3,6 +3,7 @@ import csv
 
 
 Profile = namedtuple("Profile", ['name', 'age', 'occupation', 'tagline'])
+
 # future: implement bio as a dictionary {'likes':[], 'dislikes':[]...}
 
 # keeps track of index when browsing thru profiles; by default is 0
@@ -153,7 +154,7 @@ def switch_prof(prof_library:list, idx):
     else:
         idx += 1
     
-    display_profile(prof_library[idx])
+    # display_profile(prof_library[idx])
 
     return idx
 
@@ -193,16 +194,24 @@ if __name__ == "__main__":
         if option == 'b':
             check = no_profile()
             if check:
-                display_profile(PRESETS[DEFAULT_IN])
+                # display_profile(PRESETS[DEFAULT_IN])
                 cur_in = DEFAULT_IN
 
                 while True:
-                    user_in = user_input('DEBUG: type n to swipe (q to exit)\n')
+                    display_profile(PRESETS[cur_in])
+                    user_in = user_input('DEBUG: type \'a\' to swipe. type \'d\' to swipe (q to exit)\n')
                     if user_in == 'q':
                         option = 'q'
                         break
-                    
+
                     cur_in = swipe(cur_in)
+                    if user_in == 'd':
+                        if PRESETS[cur_in] not in MATCHES:
+                            MATCHES.append(PRESETS[cur_in])
+                        else:
+                            print(f"Already matched with {PRESETS[cur_in].name}!")
+                            # fix discrepancy w already matched and whats being displayed on screen!!!
+                            
             else:
                 spacer()
                 print("No existing profile. Returning to menu...")
