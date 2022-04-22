@@ -29,18 +29,18 @@ USER_PROF = []
 
 
 def create_profile() -> bool:
-    user_name = input('Enter your name: ')
+    user_name = input('Enter your name:\n')
 
     while True:
         try:
-            user_age = int(input('Enter your age (18+): '))
+            user_age = int(input('Enter your age (18+):\n'))
             if user_age >= 18:
                 break
         except:
             print('\nError! Enter an integer.\n')
 
-    user_occupation = input('Enter your occupation: ')
-    user_tagline = input('Write a sentence that makes you, you! Enter a tagline: ')
+    user_occupation = input('Enter your occupation:\n')
+    user_tagline = input('Write a sentence that makes you, you! Enter a tagline:\n')
 
     user_profile = Profile(user_name, user_age, user_occupation, user_tagline)
 
@@ -100,7 +100,7 @@ def no_profile():
     user = False
     if len(USER_PROF) == 0:
         while True:
-            create_true = input('No existing profile. Create new profile? (y/n): ')
+            create_true = user_input('No existing profile. Create new profile? (y/n)\n')
             if create_true == 'y':
                 user = create_profile()
                 break
