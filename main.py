@@ -1,8 +1,8 @@
 from collections import namedtuple
 import csv
+from Profile import Profile
 
 
-Profile = namedtuple("Profile", ['name', 'age', 'occupation', 'tagline'])
 
 # future: implement bio as a dictionary {'likes':[], 'dislikes':[]...}
 
@@ -77,19 +77,19 @@ def edit_prof(prof:Profile):
             print()
             new_name = input('Enter new name: ')
             print('@' * 20)
-            prof = prof._replace(name=new_name)
+            prof = prof.update_info(n_name=new_name)
         elif user_in == 'a':
             print(f"{'EDIT AGE':^20}")
             new_age = int(input('Enter new age: '))
-            prof = prof._replace(age=new_age)
+            prof = prof.update_info(n_age=new_age)
         elif user_in == 'o':
             print(f"{'EDIT OCCUPATION':^20}")
             new_occ = input('Enter new occupation: ')
-            prof = prof._replace(occupation=new_occ)
+            prof = prof.update_info(n_occ=new_occ)
         elif user_in == 't':
             print(f"{'EDIT TAGLINE':^20}")
             new_tag = input('Enter new tagline: ')
-            prof = prof._replace(tagline=new_tag)
+            prof = prof.update_info(n_tagline=new_tag)
         else:
             print('Invalid option! Try again.')
 
@@ -117,15 +117,16 @@ def no_profile():
 def display_profile(prof:Profile):
     x = 'PROFILE'
     face = ascii_face()
+    prof_info = prof.get_info()
 
     print(f"\n{x:@^20}")
  
     print(f"\n\n{face}\n\n")
     
-    print(prof.name)
-    print(f"{prof.age} * {prof.occupation}")
+    print(prof_info['name'])
+    print(f"{prof_info['age']} * {prof_info['occ']}")
     print('-' * 20)
-    print(f"\"{prof.tagline}\"")
+    print(f"\"{prof_info['tagline']}\"")
     print('-' * 20)
     print('@' * 20)
     print()
