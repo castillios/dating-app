@@ -6,7 +6,7 @@ class Profile():
         self.tagline = tagline
     
 
-    def get_info(self):
+    def get_info(self) -> dict:
         db = {'name'    : self.name,
               'age'     : self.age,
               'occ'     : self.occ,

@@ -25,11 +25,13 @@ PRESETS = [
 ]
 
 MATCHES = []
-
 USER_PROF = []
 
 
 def create_profile() -> bool:
+    ''''
+    Prompts the user for info and creates a new Profile object. 
+    '''
     user_name = input('Enter your name:\n')
 
     while True:
