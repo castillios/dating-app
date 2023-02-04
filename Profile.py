@@ -1,9 +1,12 @@
+import random
+
 class Profile():
     def __init__(self, name, age, occ, tagline):
         self.name = name
         self.age = age
         self.occ = occ
         self.tagline = tagline
+        self.match_chance = random.random()
     
 
     def get_info(self) -> dict:
